@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">MenuTest</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">My Work 2.0</string>
+    <string name="nav_header_subtitle">May Your Productivity Soar</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Logout</string>
+    <string name="submit_button">Submit</string>
+
+    <!-- hints -->
+    <string name="text_item_name">Item Name</string>
+    <string name="text_item_price">Item Price</string>
+    <string name="text_item_quantity">Current Quantity</string>
+    <string name="text_UPC">UPC Barcode</string>
+    <string name="text_dept">Item Department</string>
+    <string name="text_id">Item ID</string>
+    <string name="text_quant_update">New Quantity</string>
+
+    <!-- Floating Label Hints -->
+    <string name="id_label">Incorrect ID Length</string>
+
+
+
+    <string name="admin_label">Administration</string>
+    <string name="menu_lookup">Item Lookup</string>
+    <string name="menu_update">Update Item</string>
+    <string name="menu_listAll">List All Items</string>
+    <string name="menu_addItem">Add Item</string>
+    <string name="menu_removeItem">Remove Item</string>
+</resources>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_lookup"
+            android:icon="@drawable/ic_item_lookup"
+            android:title="@string/menu_lookup"/>
+        <item
+            android:id="@+id/nav_updateItem"
+            android:icon="@drawable/ic_item_update"
+            android:title="@string/menu_update" />
+        <item
+            android:id="@+id/nav_listAll"
+            android:icon="@drawable/ic_list_all"
+            android:title="@string/menu_listAll" />
+    </group>
+
+    <item android:title="@string/admin_label">
+        <menu>
+            <item
+                android:id="@+id/nav_addItem"
+                android:icon="@drawable/ic_add_item"
+                android:title="@string/menu_addItem" />
+            <item
+                android:id="@+id/nav_removeItem"
+                android:icon="@drawable/ic_remove_item"
+                android:title="@string/menu_removeItem" />
+        </menu>
+
+    </item>
+
+</menu>
