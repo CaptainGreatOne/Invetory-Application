@@ -53,13 +53,12 @@ public class itemLookupFragment extends Fragment{
                     List<ItemModel> results = databaseHelper.searchItems(x);
                     ArrayAdapter itemArrayAdapter = new ArrayAdapter<ItemModel>(getActivity(), android.R.layout.simple_expandable_list_item_1, results);
                     lv_itemList.setAdapter(itemArrayAdapter);
-                    Toast.makeText(getActivity(), "got to the search ", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getActivity(), "got to the search ", Toast.LENGTH_SHORT).show();
 
                 }
                 catch (Exception e){
                     Toast.makeText(getActivity(), "Failed Search ", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
 

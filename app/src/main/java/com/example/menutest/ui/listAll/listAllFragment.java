@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -21,7 +22,7 @@ import com.example.menutest.ui.listAll.listAllViewModel;
 
 import java.util.List;
 
-public class listAllFragment extends Fragment{
+public class listAllFragment extends Fragment implements View.OnClickListener{
 
     private listAllViewModel listAllViewModel;
     ListView lv_itemList;
@@ -51,5 +52,9 @@ public class listAllFragment extends Fragment{
 
     }
 
+//TODO Allow user to click item in list and copy item id to clipboard. 
+    @Override
+    public void onClick(View view) {
 
+    }
 }

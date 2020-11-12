@@ -20,7 +20,7 @@ import com.example.menutest.R;
 import com.example.menutest.ui.itemUpdate.itemUpdateViewModel;
 
 public class itemUpdateFragment extends Fragment{
-
+//TODO FIX ITEM update. add limit to id input, give error message if item isn't found. 
     private itemUpdateViewModel itemUpdateViewModel;
 
     Button submit;

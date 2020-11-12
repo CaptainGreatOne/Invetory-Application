@@ -44,31 +44,38 @@ public class addItemFragment extends Fragment implements View.OnClickListener {
         quantity = root.findViewById(R.id.text_add_item_quantity);
         barcode = root.findViewById(R.id.text_add_item_barcode);
 
-
-
         //listener
        submit.setOnClickListener(new View.OnClickListener(){
            @Override
            public void onClick(View v){
+
+                int x = 0;
                 boolean success = false;
+               int idLength = String.valueOf(Integer.parseInt(id.getText().toString())).length();
+               int barcodeLength = barcode.getText().toString().length();
                ItemModel itemModel;
               // checkInput();
+                if (idLength < 4 ){
+                    x = 4 - idLength;
+                    Toast.makeText(getActivity(), "Item ID is " + x + " digits too short", Toast.LENGTH_SHORT).show();
+                }
+                else if(barcodeLength < 10){
+                    x = 10 - barcodeLength;
+                    Toast.makeText(getActivity(), "Item barcode is " + x + " digits too short", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    try {
+                        itemModel = new ItemModel((Integer.parseInt(id.getText().toString())), name.getText().toString().toUpperCase(), dept.getText().toString().toUpperCase(), Double.parseDouble(price.getText().toString()), Integer.parseInt(quantity.getText().toString()), barcode.getText().toString());
+                        DatabaseHelper dbhelper = new DatabaseHelper(getActivity());
+                        dbhelper.addOne(itemModel);
+                        success = true;
+                    } catch (Exception e) {
 
-               try {
-                   itemModel = new ItemModel((Integer.parseInt(id.getText().toString())), name.getText().toString().toUpperCase(), dept.getText().toString().toUpperCase(), Double.parseDouble(price.getText().toString()), Integer.parseInt(quantity.getText().toString()), barcode.getText().toString());
-                   Toast.makeText(getActivity(), itemModel.toString(), Toast.LENGTH_SHORT).show();
-                    // TODO Restrict incorrect input length for both ID and Barcode, then dynamically display it.
+                    }
 
-               }
-               catch (Exception e){
-                   Toast.makeText(getActivity(), "You're a dumbass", Toast.LENGTH_SHORT).show();
-                   itemModel = new ItemModel(-1, "error", "error dept", 69.20, 69, "1234567890");
-               }
 
-               DatabaseHelper dbhelper = new DatabaseHelper(getActivity());
-               success = dbhelper.addOne(itemModel);
-               Toast.makeText(getActivity(), "Sucess: " + success, Toast.LENGTH_SHORT).show();
-
+                    Toast.makeText(getActivity(), "Item " + name.getText().toString() + "added: " + success, Toast.LENGTH_SHORT).show();
+                }
            }
 
        });

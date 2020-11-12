@@ -40,7 +40,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public boolean addOne(ItemModel itemModel){
+    public void addOne(ItemModel itemModel){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -51,13 +51,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_QUANTITY, itemModel.getQuantity());
         cv.put(COLUMN_BARCODE, itemModel.getBarcode());
 
-        long insert = db.insert(TABLE_ITEMS, null, cv);
+        db.insert(TABLE_ITEMS, null, cv);
 
         db.close();
-        if (insert == -1)
-            return false;
-        else
-            return true;
     }
 
     public boolean deleteOne(Integer id){
