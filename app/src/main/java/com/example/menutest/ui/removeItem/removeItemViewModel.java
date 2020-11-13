@@ -9,7 +9,7 @@ public class removeItemViewModel extends ViewModel{
 
     public removeItemViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is the Remove Item fragment");
+        mText.setValue("Remove Item");
     }
 
     public LiveData<String> getText() {

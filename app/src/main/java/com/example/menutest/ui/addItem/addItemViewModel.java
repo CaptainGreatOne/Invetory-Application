@@ -11,7 +11,7 @@ public class addItemViewModel extends ViewModel {
 
     public addItemViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is the Add Item fragment");
+        mText.setValue("Add Item");
 
     }
 

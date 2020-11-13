@@ -10,7 +10,7 @@ public class itemUpdateViewModel extends ViewModel{
 
     public itemUpdateViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is the Update Item Stock fragment");
+        mText.setValue("Update Item Quantity");
     }
 
     public LiveData<String> getText() {

@@ -10,7 +10,7 @@ public class itemLookupViewModel extends ViewModel{
 
     public itemLookupViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is the Item Lookup fragment");
+        mText.setValue("Item Lookup");
     }
 
     public LiveData<String> getText() {

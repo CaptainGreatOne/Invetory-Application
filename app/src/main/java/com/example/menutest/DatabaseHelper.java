@@ -71,30 +71,42 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean updateQuantity(Integer id, Integer quant){
         boolean success = false;
         SQLiteDatabase db = this.getWritableDatabase();
-       // String strSQL = "UPDATE " + TABLE_ITEMS + " " + SET + " " + COLUMN_QUANTITY + "=" + quant + " " + WHERE + " " + COLUMN_ID + "=" + id;
-        String test = "UPDATE " + TABLE_ITEMS + " SET " + COLUMN_QUANTITY + "=" + quant +  " WHERE " + COLUMN_ID + "=" + id;
+        //query string to update item
+        String update = "UPDATE " + TABLE_ITEMS + " SET " + COLUMN_QUANTITY + "=" + quant +  " WHERE " + COLUMN_ID + "=" + id;
+        //checks if row with item ID = id exists.
+        String test = "SELECT EXISTS(SELECT * from " + TABLE_ITEMS + " WHERE " + COLUMN_ID + "=" + id + ")";
         try {
-            db.execSQL(test);
-            success = true;
-        }
-        catch (Exception e){
+            //checks if id exists
+            Cursor cursor = db.rawQuery(test, null);
+            //if result is more than 0
+            if(cursor.getCount() >= 0){
+                cursor.close();
+               success = true;
+               //updates the item
+               try {
+                    db.execSQL(update);
+                    success = true;
+                }
+               //unless it fails
+                catch (Exception e){
+                    success = false;
+                }
+            }
+            cursor.close();
 
         }
-        //Integer result = db.update(TABLE_ITEMS, quant, "QUANTITY=?", new int[](quant));
+        catch (Exception e){
+            success = false;
+        }
         db.close();
         return success;
     }
 
     public List<ItemModel> searchItems(String x){
         List<ItemModel> returnList = new ArrayList<>();
-
-        //get data from database     SELECT * FROM docs WHERE docs MATCH 'linux'
-
         SQLiteDatabase db = this.getReadableDatabase();
         String queryString;
         Cursor cursor;
-        //if x is an int, it searches both id and name columns, else it just searches name column.
-        //SELECT * FROM ITEMS WHERE (ID LIKE "2") or (NAME LIKE "%E%")
         try{
             int y = Integer.parseInt(x);
             x = x.toUpperCase();

@@ -9,7 +9,7 @@ public class listAllViewModel extends ViewModel{
 
     public listAllViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is the List All Items fragment");
+        mText.setValue("List 'O Items");
     }
 
     public LiveData<String> getText() {

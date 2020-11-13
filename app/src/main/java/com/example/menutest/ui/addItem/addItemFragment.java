@@ -49,8 +49,8 @@ public class addItemFragment extends Fragment implements View.OnClickListener {
            @Override
            public void onClick(View v){
 
-                int x = 0;
-                boolean success = false;
+               int x = 0;
+               boolean success = false;
                int idLength = String.valueOf(Integer.parseInt(id.getText().toString())).length();
                int barcodeLength = barcode.getText().toString().length();
                ItemModel itemModel;

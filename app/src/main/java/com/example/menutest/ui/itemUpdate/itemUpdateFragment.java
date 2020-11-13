@@ -20,7 +20,7 @@ import com.example.menutest.R;
 import com.example.menutest.ui.itemUpdate.itemUpdateViewModel;
 
 public class itemUpdateFragment extends Fragment{
-//TODO FIX ITEM update. add limit to id input, give error message if item isn't found. 
+//TODO FIX ITEM update. add limit to id input, give error message if item isn't found.
     private itemUpdateViewModel itemUpdateViewModel;
 
     Button submit;
@@ -41,26 +41,31 @@ public class itemUpdateFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 DatabaseHelper dbhelper = new DatabaseHelper(getActivity());
+                int x;
                 int id_;
                 int quant;
                 boolean success = false;
+                int idLength = String.valueOf(Integer.parseInt(id.getText().toString())).length();
+                //checks if length of id is acceptable
+                if (idLength < 4) {
+                    x = 4 - idLength;
+                    Toast.makeText(getActivity(), "Item ID is " + x + " digits too short", Toast.LENGTH_SHORT).show();
+                } else {
+                    //to catch any input errors...
+                    try {
 
-                //to catch any input errors...
-                try {
+                        id_ = Integer.parseInt(id.getText().toString());
+                        quant = Integer.parseInt(quantity.getText().toString());
+                        success = dbhelper.updateQuantity(id_, quant);
+                    } catch (Exception e) {
+                        Toast.makeText(getActivity(), "Item doesn't exist ", Toast.LENGTH_SHORT).show();
+                    }
 
-                    id_ = Integer.parseInt(id.getText().toString());
-                    quant = Integer.parseInt(quantity.getText().toString());
-                    success = dbhelper.updateQuantity(id_, quant);
+
+                    Toast.makeText(getActivity(), "Sucess: " + success, Toast.LENGTH_SHORT).show();
+
                 }
-                catch (Exception e){
-                    Toast.makeText(getActivity(), "Item doesn't exist ", Toast.LENGTH_SHORT).show();
-                }
-
-
-                Toast.makeText(getActivity(), "Sucess: " + success, Toast.LENGTH_SHORT).show();
-
             }
-
         });
 
 
