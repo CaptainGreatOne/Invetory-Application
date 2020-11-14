@@ -57,12 +57,13 @@ public class itemUpdateFragment extends Fragment{
                         id_ = Integer.parseInt(id.getText().toString());
                         quant = Integer.parseInt(quantity.getText().toString());
                         success = dbhelper.updateQuantity(id_, quant);
+                        Toast.makeText(getActivity(), "Sucess: " + success, Toast.LENGTH_SHORT).show();
                     } catch (Exception e) {
-                        Toast.makeText(getActivity(), "Item doesn't exist ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Sucess: " + success, Toast.LENGTH_SHORT).show();
                     }
 
 
-                    Toast.makeText(getActivity(), "Sucess: " + success, Toast.LENGTH_SHORT).show();
+
 
                 }
             }
