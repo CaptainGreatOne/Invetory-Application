@@ -47,37 +47,41 @@ public class addItemFragment extends Fragment implements View.OnClickListener {
         //listener
        submit.setOnClickListener(new View.OnClickListener(){
            @Override
-           public void onClick(View v){
+           public void onClick(View v) {
 
                int x = 0;
+               int y = 0;
                boolean success = false;
-               int idLength = String.valueOf(Integer.parseInt(id.getText().toString())).length();
-               int barcodeLength = barcode.getText().toString().length();
-               ItemModel itemModel;
-              // checkInput();
-                if (idLength < 4 ){
-                    x = 4 - idLength;
-                    Toast.makeText(getActivity(), "Item ID is " + x + " digits too short", Toast.LENGTH_SHORT).show();
-                }
-                else if(barcodeLength < 10){
-                    x = 10 - barcodeLength;
-                    Toast.makeText(getActivity(), "Item barcode is " + x + " digits too short", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    try {
-                        itemModel = new ItemModel((Integer.parseInt(id.getText().toString())), name.getText().toString().toUpperCase(), dept.getText().toString().toUpperCase(), Double.parseDouble(price.getText().toString()), Integer.parseInt(quantity.getText().toString()), barcode.getText().toString());
-                        DatabaseHelper dbhelper = new DatabaseHelper(getActivity());
-                        dbhelper.addOne(itemModel);
-                        success = true;
-                    } catch (Exception e) {
+               try {
+                   int idLength = String.valueOf(Integer.parseInt(id.getText().toString())).length();
+                   int barcodeLength = barcode.getText().toString().length();
+                   ItemModel itemModel;
 
-                    }
+                   // checkInput();
+                   if (idLength < 4) {
+                       x = 4 - idLength;
+                       Toast.makeText(getActivity(), "Item ID is " + x + " digits too short", Toast.LENGTH_SHORT).show();
+                   } else if (barcodeLength < 12) {
+                       y = 12 - barcodeLength;
+                       Toast.makeText(getActivity(), "Item barcode is " + y + " digits too short", Toast.LENGTH_SHORT).show();
+                   } else {
+                       try {
+                           itemModel = new ItemModel((Integer.parseInt(id.getText().toString())), name.getText().toString().toUpperCase(), dept.getText().toString().toUpperCase(), Double.parseDouble(price.getText().toString()), Integer.parseInt(quantity.getText().toString()), barcode.getText().toString());
+                           DatabaseHelper dbhelper = new DatabaseHelper(getActivity());
+                           dbhelper.addOne(itemModel);
+                           success = true;
+                       } catch (Exception e) {
+
+                       }
 
 
-                    Toast.makeText(getActivity(), "Item " + name.getText().toString() + "added: " + success, Toast.LENGTH_SHORT).show();
-                }
+                       Toast.makeText(getActivity(), "Item " + name.getText().toString() + "added: " + success, Toast.LENGTH_SHORT).show();
+                   }
+
+               } catch (Exception e) {
+                   Toast.makeText(getActivity(), "Please review. Some fields are empty", Toast.LENGTH_SHORT).show();
+               }
            }
-
        });
 
 
